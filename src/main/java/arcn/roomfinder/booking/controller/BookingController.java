@@ -4,6 +4,7 @@ import arcn.roomfinder.booking.application.BookingUseCase;
 import arcn.roomfinder.booking.domain.dto.BookingDto;
 import arcn.roomfinder.booking.domain.entity.Booking;
 import arcn.roomfinder.booking.exception.RoomFinderException;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,9 @@ import java.util.UUID;
 public class BookingController {
     private final BookingUseCase bookingUseCase;
 
+    @Operation(summary = "Create a booking")
     @PostMapping
-    public ResponseEntity<?> createBooking(@RequestBody BookingDto bookingDto) {
+    public ResponseEntity<UUID> createBooking(@RequestBody BookingDto bookingDto) {
         try {
             return ResponseEntity.ok(bookingUseCase.createBooking(bookingDto));
         } catch (RoomFinderException e) {
@@ -26,8 +28,9 @@ public class BookingController {
         }
     }
 
+    @Operation(summary = "Get a booking by id")
     @GetMapping("/{bookingId}")
-    public ResponseEntity<?> searchBookingById(@PathVariable("bookingId") UUID bookingId) throws RoomFinderException {
+    public ResponseEntity<Booking> searchBookingById(@PathVariable("bookingId") UUID bookingId) throws RoomFinderException {
         try {
             return ResponseEntity.ok(bookingUseCase.searchBookingById(bookingId));
         } catch (RoomFinderException e) {
@@ -35,13 +38,15 @@ public class BookingController {
         }
     }
 
+    @Operation(summary = "Get all bookings")
     @GetMapping
-    public ResponseEntity<?> getBookings() {
+    public ResponseEntity<List<Booking>> getBookings() {
         return ResponseEntity.ok(bookingUseCase.getAllBookings());
     }
 
+    @Operation(summary = "Update a booking by id")
     @PutMapping("/{bookingId}/bookingDto")
-    public ResponseEntity<?> updateBookingById(@PathVariable("bookingId") UUID bookingId, @RequestBody BookingDto bookingDto) throws RoomFinderException {
+    public ResponseEntity<Booking> updateBookingById(@PathVariable("bookingId") UUID bookingId, @RequestBody BookingDto bookingDto) throws RoomFinderException {
         try {
             return ResponseEntity.ok(bookingUseCase.updateBookingById(bookingId,bookingDto));
         } catch (RoomFinderException e) {
@@ -49,8 +54,9 @@ public class BookingController {
         }
     }
 
+    @Operation(summary = "Delete a booking by id")
     @DeleteMapping("/{bookingId}")
-    public ResponseEntity<?> deleteBookingById(@PathVariable("bookingId") UUID bookingId) throws RoomFinderException {
+    public ResponseEntity<Boolean> deleteBookingById(@PathVariable("bookingId") UUID bookingId) throws RoomFinderException {
         try {
             return ResponseEntity.ok(bookingUseCase.deleteBookingById(bookingId));
         } catch (RoomFinderException e) {
