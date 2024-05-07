@@ -3,10 +3,19 @@
   "name": "Codespace for booking room",
 
   // Use the base codespace image
-  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
 
   "remoteUser": "codespace",
   "overrideCommand": false,
+
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "installMaven": true,
+      "installGradle": "false",
+      "version": "17",
+      "jdkDistro": "ms",
+      "mavenVersion": "3.8.6"
+  },
 
   // Add the IDs of extensions you want installed when the container is created.
   "customizations": {
@@ -14,8 +23,11 @@
           "extensions": [
             "GitHub.copilot",
             "vscjava.vscode-java-pack",
-            "vmware.vscode-boot-dev-pack"
+            "vmware.vscode-boot-dev-pack",
+             "SonarSource.sonarlint-vscode",
+            "GitHub.vscode-github-actions"
           ]
       }
     }
+  }
 }
