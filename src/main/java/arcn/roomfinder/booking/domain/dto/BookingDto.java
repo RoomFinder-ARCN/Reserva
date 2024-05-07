@@ -11,17 +11,17 @@ import lombok.Getter;
 @Builder
 public class BookingDto {
     @NonNull
-    private final UUID clientId;
+    private String clientId;
     @NonNull
-    private final Status status;
+    private Status status;
     @NonNull
-    private final LocalDate admissionDate;
+    private LocalDate admissionDate;
     @NonNull
-    private final LocalDate departureDate;
+    private LocalDate departureDate;
     @NonNull
-    private final int roomNumber;
+    private int roomNumber;
     @NonNull
-    private final double price;
+    private double price;
     @NonNull
-    private final double payment;
+    private double payment;
 }

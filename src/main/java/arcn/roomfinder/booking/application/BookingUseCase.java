@@ -4,6 +4,7 @@ import arcn.roomfinder.booking.domain.dto.BookingDto;
 import arcn.roomfinder.booking.domain.entity.Booking;
 import arcn.roomfinder.booking.domain.repository.BookingRepository;
 import arcn.roomfinder.booking.domain.repository.BookingRoomRepository;
+import arcn.roomfinder.booking.exception.RoomFinderException;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
@@ -18,22 +19,45 @@ public class BookingUseCase {
     private final BookingRepository bookingRepository;
     private final BookingRoomRepository bookingRoomRepository;
 
-    public UUID createBooking(@NotNull BookingDto bookingDto) {
+    public UUID createBooking(@NotNull BookingDto bookingDto) throws RoomFinderException {
         boolean roomValidation = bookingRoomRepository.searchRoomByNumber(bookingDto.getRoomNumber());
         boolean roomStatusValidation = bookingRoomRepository.availabilityByRoomNumber(bookingDto.getRoomNumber());
         if (!roomValidation) {
-            throw new IllegalArgumentException("Habitación no existente");
+            throw new RoomFinderException("Habitación no existente");
         }
-        if (!roomStatusValidation){
-            throw new IllegalArgumentException("Habitación no disponible para reserva");
-        }
-        else {
+        if (!roomStatusValidation) {
+            throw new RoomFinderException("Habitación no disponible para reserva");
+        } else {
             return bookingRepository.createBooking(bookingDto);
         }
     }
 
-    public List<Booking> getAll() {
-        return bookingRepository.getAll();
+    public Booking searchBookingById(UUID bookingId) throws RoomFinderException {
+        if (bookingId == null) {
+            throw new RoomFinderException("Id de la reserva no permitido");
+        } else {
+            return bookingRepository.searchBookingById(bookingId);
+        }
+
     }
 
+    public List<Booking> getAllBookings() {
+        return bookingRepository.getAllBookings();
+    }
+
+    public Booking updateBookingById(UUID bookingId, @NotNull BookingDto bookingDto) throws RoomFinderException {
+        if (bookingId == null) {
+            throw new RoomFinderException("Id de la reserva no permitido");
+        } else {
+            return bookingRepository.updateBookingById(bookingId, bookingDto);
+        }
+    }
+
+    public boolean deleteBookingById(UUID bookingId) throws RoomFinderException {
+        if (bookingId == null) {
+            throw new RoomFinderException("Id de la reserva no permitido");
+        } else {
+            return bookingRepository.deleteBookingById(bookingId);
+        }
+    }
 }
