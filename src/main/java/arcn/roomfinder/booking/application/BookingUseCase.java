@@ -18,6 +18,7 @@ public class BookingUseCase {
 
     private final BookingRepository bookingRepository;
     private final BookingRoomRepository bookingRoomRepository;
+    private final String idNotAllowed = "Id de la reserva no permitido";
 
     public UUID createBooking(@NotNull BookingDto bookingDto) throws RoomFinderException {
         boolean roomValidation = bookingRoomRepository.searchRoomByNumber(bookingDto.getRoomNumber());
@@ -34,7 +35,7 @@ public class BookingUseCase {
 
     public Booking searchBookingById(UUID bookingId) throws RoomFinderException {
         if (bookingId == null) {
-            throw new RoomFinderException("Id de la reserva no permitido");
+            throw new RoomFinderException(idNotAllowed);
         } else {
             return bookingRepository.searchBookingById(bookingId);
         }
@@ -47,7 +48,7 @@ public class BookingUseCase {
 
     public Booking updateBookingById(UUID bookingId, @NotNull BookingDto bookingDto) throws RoomFinderException {
         if (bookingId == null) {
-            throw new RoomFinderException("Id de la reserva no permitido");
+            throw new RoomFinderException(idNotAllowed);
         } else {
             return bookingRepository.updateBookingById(bookingId, bookingDto);
         }
@@ -55,7 +56,7 @@ public class BookingUseCase {
 
     public boolean deleteBookingById(UUID bookingId) throws RoomFinderException {
         if (bookingId == null) {
-            throw new RoomFinderException("Id de la reserva no permitido");
+            throw new RoomFinderException(idNotAllowed);
         } else {
             return bookingRepository.deleteBookingById(bookingId);
         }

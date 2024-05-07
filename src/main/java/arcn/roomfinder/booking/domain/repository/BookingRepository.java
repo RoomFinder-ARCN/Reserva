@@ -2,7 +2,6 @@ package arcn.roomfinder.booking.domain.repository;
 
 import arcn.roomfinder.booking.domain.dto.BookingDto;
 import arcn.roomfinder.booking.domain.entity.Booking;
-import arcn.roomfinder.booking.exception.RoomFinderException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

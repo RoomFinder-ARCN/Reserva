@@ -11,10 +11,7 @@ public class BookingRoomRepositoryImpl implements BookingRoomRepository {
 
     @Override
     public boolean searchRoomByNumber(int roomNumber) {
-        if (rooms.containsKey(roomNumber)) {
-            return true;
-        }
-        return false;
+        return rooms.containsKey(roomNumber);
     }
 
     @Override

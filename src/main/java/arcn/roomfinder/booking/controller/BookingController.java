@@ -6,6 +6,7 @@ import arcn.roomfinder.booking.domain.entity.Booking;
 import arcn.roomfinder.booking.exception.RoomFinderException;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class BookingController {
         try {
             return ResponseEntity.ok(bookingUseCase.createBooking(bookingDto));
         } catch (RoomFinderException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
@@ -34,7 +35,7 @@ public class BookingController {
         try {
             return ResponseEntity.ok(bookingUseCase.searchBookingById(bookingId));
         } catch (RoomFinderException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
@@ -50,7 +51,7 @@ public class BookingController {
         try {
             return ResponseEntity.ok(bookingUseCase.updateBookingById(bookingId,bookingDto));
         } catch (RoomFinderException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
@@ -60,7 +61,7 @@ public class BookingController {
         try {
             return ResponseEntity.ok(bookingUseCase.deleteBookingById(bookingId));
         } catch (RoomFinderException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }

@@ -2,7 +2,6 @@ package arcn.roomfinder.booking.domain.dto;
 
 import arcn.roomfinder.booking.application.Status;
 import java.time.LocalDate;
-import java.util.UUID;
 import io.micrometer.common.lang.NonNull;
 import lombok.Builder;
 import lombok.Getter;
