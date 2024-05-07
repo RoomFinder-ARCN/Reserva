@@ -18,7 +18,7 @@ public class BookingUseCase {
 
     private final BookingRepository bookingRepository;
     private final BookingRoomRepository bookingRoomRepository;
-    private final String idNotAllowed = "Id de la reserva no permitido";
+    private static final String idNotAllowed = "Id de la reserva no permitido";
 
     public UUID createBooking(@NotNull BookingDto bookingDto) throws RoomFinderException {
         boolean roomValidation = bookingRoomRepository.searchRoomByNumber(bookingDto.getRoomNumber());
