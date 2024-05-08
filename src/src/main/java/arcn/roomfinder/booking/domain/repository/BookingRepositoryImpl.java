@@ -2,17 +2,17 @@ package arcn.roomfinder.booking.domain.repository;
 
 import arcn.roomfinder.booking.domain.dto.BookingDto;
 import arcn.roomfinder.booking.domain.entity.Booking;
-import arcn.roomfinder.booking.exception.RoomFinderException;
-import org.jetbrains.annotations.NotNull;
+import lombok.Setter;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Setter
 @Repository
 public class BookingRepositoryImpl implements BookingRepository {
 
-    static List<Booking> bookings = new ArrayList<>();
+    private List<Booking> bookings = new ArrayList<>();
 
     @Override
     public UUID createBooking(BookingDto bookingDto) {

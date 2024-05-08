@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.hamcrest.Matchers.is;
 
-public class BookingControllerTests {
+class BookingControllerTests {
     @Mock
     private MockMvc mockMvc;
     @Mock
