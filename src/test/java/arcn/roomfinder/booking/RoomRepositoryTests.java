@@ -1,27 +1,15 @@
 package arcn.roomfinder.booking;
 
-import arcn.roomfinder.booking.application.BookingUseCase;
-import arcn.roomfinder.booking.domain.dto.BookingDto;
-import arcn.roomfinder.booking.domain.entity.Booking;
-import arcn.roomfinder.booking.domain.repository.BookingRepository;
-import arcn.roomfinder.booking.domain.repository.BookingRoomRepository;
 import arcn.roomfinder.booking.domain.repository.BookingRoomRepositoryImpl;
 import arcn.roomfinder.booking.exception.RoomFinderException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
-import static arcn.roomfinder.booking.application.Status.APLAZADA;
-import static arcn.roomfinder.booking.application.Status.CONFIRMADA;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
 
 class RoomRepositoryTests {
 
