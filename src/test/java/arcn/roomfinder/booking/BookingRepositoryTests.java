@@ -95,7 +95,7 @@ class BookingRepositoryTests {
     }
 
     @Test
-    public void  should_not_search_booking_when_doesnt_exists_bookingId() {
+    void should_not_search_booking_when_doesnt_exists_bookingId() {
         // Arrange
         UUID nonExistingBookingId = UUID.randomUUID();
 
@@ -136,7 +136,7 @@ class BookingRepositoryTests {
     }
 
     @Test
-    public void should_not_update_booking_when_doesnt_exists_bookingId() {
+    void should_not_update_booking_when_doesnt_exists_bookingId() {
         // Arrange
         BookingDto newBooking = BookingDto.builder()
                 .clientId("048fb29b-1719-451d-95fe-4c35cba6d56d")
@@ -167,7 +167,7 @@ class BookingRepositoryTests {
     }
 
     @Test
-    public void should_not_delete_booking_when_doesnt_exists_bookingId() {
+    void should_not_delete_booking_when_doesnt_exists_bookingId() {
         //Arrange and action
         boolean deletedBooking = bookingRoomRepositoryImpl.deleteBookingById(UUID.randomUUID());
 

@@ -1,9 +1,11 @@
 package arcn.roomfinder.booking.domain.repository;
 
+import lombok.Setter;
 import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.Map;
 
+@Setter
 @Repository
 public class BookingRoomRepositoryImpl implements BookingRoomRepository {
 
