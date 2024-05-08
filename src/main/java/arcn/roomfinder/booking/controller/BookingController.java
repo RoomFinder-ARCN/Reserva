@@ -46,7 +46,7 @@ public class BookingController {
     }
 
     @Operation(summary = "Update a booking by id")
-    @PutMapping("/{bookingId}/bookingDto")
+    @PutMapping("/{bookingId}")
     public ResponseEntity<Booking> updateBookingById(@PathVariable("bookingId") UUID bookingId, @RequestBody BookingDto bookingDto) throws RoomFinderException {
         try {
             return ResponseEntity.ok(bookingUseCase.updateBookingById(bookingId,bookingDto));
